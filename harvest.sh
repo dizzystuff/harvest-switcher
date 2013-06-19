@@ -9,17 +9,17 @@ function exitIfRunning {
 }
 
 function removeCurrentPreferences {
-  if [ -e com.getharvest.harvestx.plist ]
+  if [ -e com.getharvest.harvestxapp.plist ]
   then
-    rm com.getharvest.harvestx.plist
+    rm com.getharvest.harvestxapp.plist
   fi
 }
 
 function switchAccount {
-  if [ -e com.getharvest.harvestx.plist_$1 ]
+  if [ -e com.getharvest.harvestxapp.plist_$1 ]
   then
     removeCurrentPreferences
-    ln -s "com.getharvest.harvestx.plist_$1" com.getharvest.harvestx.plist
+    ln -s "com.getharvest.harvestxapp.plist_$1" com.getharvest.harvestxapp.plist
   else
     echo "There are no preferences saved as $1."
     exit 1
@@ -27,7 +27,7 @@ function switchAccount {
 }
 
 function createAccount {
-  if [ -h com.getharvest.harvestx.plist ]
+  if [ -h com.getharvest.harvestxapp.plist ]
   then
     removeCurrentPreferences
     open /Applications/Harvest.app
@@ -36,8 +36,8 @@ function createAccount {
     read -p "3) Press [Enter]."
   fi
 
-  mv com.getharvest.harvestx.plist "com.getharvest.harvestx.plist_$1"
-  ln -s "com.getharvest.harvestx.plist_$1" com.getharvest.harvestx.plist
+  mv com.getharvest.harvestxapp.plist "com.getharvest.harvestxapp.plist_$1"
+  ln -s "com.getharvest.harvestxapp.plist_$1" com.getharvest.harvestxapp.plist
 }
 
 exitIfRunning
